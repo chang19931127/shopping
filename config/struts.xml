@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<!-- structs2 的 配置，之类 继承了 structs-default 包，若干个拦截器，
+	因为已经和spring集成，因此这里的class就是spring中的bean，然后我们就可以通过
+	拦截器针对请求进行拦截，然后来处理，使用pojo
+ -->
+<struts>
+	<package name="shop" extends="struts-default">
+		<!-- 这里spring集成了struts2   这里的class已经在bean中注册 -->
+		<action name="testAction_*" class="testAction" method="{1}">
+			<!-- 重定向可以忽略工程名 -->
+			<result name="success" type="redirect">/success.jsp</result>
+		</action>
+	</package>
+</struts>
