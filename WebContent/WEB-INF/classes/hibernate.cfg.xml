@@ -20,6 +20,7 @@
 		<property name="c3p0.maxPoolSize">20</property>
 		<property name="c3p0.checkoutTimeout">6000</property>
 		<property name="show_sql">true</property>
-		<mapping resource="com/czd/shopping/pojo/Category.hbm.xml"/>
+		<mapping resource="com/czd/shopping/pojo/Category.hbm.xml" />
+		<mapping resource="com/czd/shopping/pojo/Account.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

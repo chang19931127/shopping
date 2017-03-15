@@ -9,9 +9,6 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 	<bean id="date" class="java.util.Date" />
-	<bean id="categoryServiceImpl" class='com.czd.shopping.service.impl.CategoryServiceImpl'>
-		<property name="hibernateTemplate" ref="hibernateTemplate"/>
-	</bean>
 	<!-- 1 -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -29,6 +26,19 @@ http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<!-- 事务管理器 -->
-		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+
+	<!-- 此类不能直接实例化 因此配置懒加载 -->
+	<bean id="baseService" class="com.czd.shopping.service.impl.BaseServiceImpl"
+		lazy-init="true">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	<!-- spring 中的父子关系 -->
+	<bean id="categoryService" class="com.czd.shopping.service.impl.CategoryServiceImpl"
+		parent="baseService" />
+	<!-- 这个bean 不能直接被实例化，需要父类 BaseServiceImpl -->
+	<bean id="accountService" class="com.czd.shopping.service.impl.AccountServiceImpl"
+		parent="baseService" />
+
 </beans>

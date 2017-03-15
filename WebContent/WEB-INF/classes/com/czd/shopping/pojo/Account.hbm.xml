@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.czd.shopping.pojo.Account" table="account">
+		<id name="aid" type="java.lang.Integer">
+			<column name="aid" />
+			<generator class="native" />
+		</id>
+		<property name="alogin" type="java.lang.String">
+			<column name="alogin" length="20" />
+		</property>
+		<property name="aname" type="java.lang.String">
+			<column name="aname" />
+		</property>
+		<property name="apass" type='java.lang.String'>
+			<column name="apass" />
+		</property>
+	</class>
+</hibernate-mapping>

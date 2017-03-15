@@ -7,8 +7,18 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 http://www.springframework.org/schema/tx
-http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">		
-	<bean id="testAction" class="com.czd.shopping.action.TestAction">
-		<property name="categoryServiceImpl" ref="categoryServiceImpl"/>
+http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+	<!-- 测试 bean -->
+	<bean id="testAction" class="com.czd.ssh.TestAction">
+		<property name="categoryService" ref="categoryService" />
 	</bean>
+
+	<bean id="baseAction" class="com.czd.shopping.action.BaseAction" scope="prototype">
+		<property name="accountService" ref="accountService" />
+		<property name="categoryService" ref="categoryService"/>
+	</bean>
+	<bean id="accountAction" class="com.czd.shopping.action.AccountAction"
+		parent="baseAction" scope="prototype"/>
+	<bean id="categoryAction" class="com.czd.shopping.action.CategoryAction"
+		parent="baseAction" scope="prototype"/>
 </beans>

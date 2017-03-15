@@ -54,5 +54,8 @@ public class Category {
 		this.aid = aid;
 	}
 
+	public String toString(){
+		return "[" + cid + "," + chot + "," + ctype + "]";
+	}
 	
 }
