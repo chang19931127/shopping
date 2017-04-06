@@ -40,5 +40,19 @@ http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 	<!-- 这个bean 不能直接被实例化，需要父类 BaseServiceImpl -->
 	<bean id="accountService" class="com.czd.shopping.service.impl.AccountServiceImpl"
 		parent="baseService" />
+	<bean id="goodsService" class="com.czd.shopping.service.impl.GoodsServiceImpl"
+		parent="baseService" />
+	<bean id="forderService" class="com.czd.shopping.service.impl.ForderServiceImpl"
+		parent="baseService" />
+	<bean id="sorderService" class="com.czd.shopping.service.impl.SorderServiceImpl"
+		parent="baseService" />
+	<bean id="fileUploadUtil" class="com.czd.shopping.util.FileUploadUtil">
+		<property name="filePath"
+			value="E:\javaprogram\java-web\shopping\WebContent\image\" />
+	</bean>
+	<bean id="shopTimerTask" class="com.czd.shopping.util.ShopTimerTask">
+		<property name="categoryService" ref="categoryService" />
+		<property name="goodsService" ref="goodsService" />
+	</bean>
 
 </beans>

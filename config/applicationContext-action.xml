@@ -13,12 +13,24 @@ http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 		<property name="categoryService" ref="categoryService" />
 	</bean>
 
-	<bean id="baseAction" class="com.czd.shopping.action.BaseAction" scope="prototype">
+	<bean id="baseAction" class="com.czd.shopping.action.BaseAction"
+		scope="prototype">
 		<property name="accountService" ref="accountService" />
-		<property name="categoryService" ref="categoryService"/>
+		<property name="categoryService" ref="categoryService" />
+		<property name="goodsService" ref="goodsService" />
+		<property name="forderService" ref="forderService" />
+		<property name="sorderService" ref="sorderService" />
+		<property name="fileUploadUtil" ref="fileUploadUtil" />
 	</bean>
 	<bean id="accountAction" class="com.czd.shopping.action.AccountAction"
-		parent="baseAction" scope="prototype"/>
+		parent="baseAction" scope="prototype" />
 	<bean id="categoryAction" class="com.czd.shopping.action.CategoryAction"
-		parent="baseAction" scope="prototype"/>
+		parent="baseAction" scope="prototype" />
+	<bean id="goodsAction" class="com.czd.shopping.action.GoodsAction"
+		parent="baseAction" scope="prototype" />
+	<bean id="forderAction" class="com.czd.shopping.action.ForderAction"
+		parent="baseAction" scope="prototype" />
+	<bean id="sorderAction" class="com.czd.shopping.action.SorderAction"
+		parent="baseAction" scope="prototype" />
+
 </beans>

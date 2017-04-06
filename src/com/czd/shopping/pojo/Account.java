@@ -2,7 +2,7 @@ package com.czd.shopping.pojo;
 
 import java.io.Serializable;
 
-//Account
+//Account     用户bean
 //一个很简单的bean
 public class Account implements Serializable {
 	private static final long serialVersionUID = 7207703117487703483L;

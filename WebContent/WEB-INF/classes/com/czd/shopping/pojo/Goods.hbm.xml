@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.czd.shopping.pojo">
+	<class name="Goods" table="goods">
+		<id name="gid" type="java.lang.Integer">
+			<column name="gid" />
+			<generator class="native"></generator>
+		</id>
+		<property name="gname" type="java.lang.String">
+			<column name="gname" length="20" />
+		</property>
+		<property name="gprice" type="java.lang.Double">
+			<column name="gprice" precision="8" />
+		</property>
+		<property name="gpic" type="java.lang.String">
+			<column name="gpic" length="200" />
+		</property>
+		<property name="gremark" type="java.lang.String">
+			<column name="gremark" />
+		</property>
+		<property name="gxremark" type="java.lang.String">
+			<column name="gxremark" />
+		</property>
+		<property name="gdate" type="java.sql.Timestamp">
+			<column name="gdate" length="19" />
+		</property>
+		<property name="gcommend" type="java.lang.Boolean">
+			<column name="gcommend" />
+		</property>
+		<property name="gopen" type="java.lang.Boolean">
+			<column name="gopen" />
+		</property>
+		
+		<!-- 多对一的关系，尽量在代码中配置关系，让数据库少关联，这样数据库效率会提升 -->
+		<many-to-one name="category" class="Category" lazy="false" not-found="ignore">
+			<column name="cid" />
+		</many-to-one>
+	</class>
+</hibernate-mapping>

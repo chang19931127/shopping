@@ -3,22 +3,45 @@
 <!-- structs2 的 配置，之类 继承了 structs-default 包，若干个拦截器， 因为已经和spring集成，因此这里的class就是spring中的bean，然后我们就可以通过 
 	拦截器针对请求进行拦截，然后来处理，使用pojo -->
 <struts>
-	<package name="shop" extends="struts-default">
+	<!-- 这里解决POST 提交 -->
+	<!-- get提交修改server.xml -->
+	<!-- 为了使用json ，请看jsonplugin 中 -->
+	<package name="shop" extends="json-default">
 		<!-- 全局一定要在最前面 -->
 		<global-results>
 			<result name="main">/admin/main.jsp</result>
 		</global-results>
-		
+
 		<!-- 这里spring集成了struts2 这里的class已经在bean中注册 -->
 		<action name="testAction_*" class="testAction" method="{1}">
 			<!-- 重定向可以忽略工程名 -->
 			<result name="success" type="redirect">/success.jsp</result>
 		</action>
-
 		<action name="accountAction_*" method="{1}" class="accountAction">
 			<result name="queryAccount">/admin/account/queryAccount.jsp</result>
 			<result name="updateAccount">/admin/account/updateAccount.jsp</result>
 		</action>
-		<action name="categoryAction_*" method="{1}" class="categoryAction" />
+		<action name="categoryAction_*" method="{1}" class="categoryAction">
+			<result name="query">/admin/category/query.jsp</result>
+		</action>
+		<action name="goodsAction_*" method="{1}" class="goodsAction">
+			<result name="query">/admin/goods/query.jsp</result>
+			<result name="update">/admin/goods/update.jsp</result>
+			<result name="detail">/detail.jsp</result>
+		</action>
+		<action name="sorderAction_*" method="{1}" class="sorderAction">
+			<!-- chain 跳转类型 -->
+			<result name="demo" type="chain">
+				<param name="actionName">forderAction_cluFtotal</param>
+			</result>
+			<!-- struts中通过返回值类型来返回json数据，通过string 来获取jsonString -->
+			<result name="json1" type="json">
+				<!-- root 源码中指定的 json数据源 -->
+				<param name="root">jsonMap</param>
+			</result>
+		</action>
+		<action name="forderAction_*" method="{1}" class="forderAction">
+			<result name="showCar" type="redirect">/showCar.jsp</result>
+		</action>
 	</package>
 </struts>

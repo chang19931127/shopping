@@ -4,6 +4,7 @@ package com.czd.shopping.pojo;
  * @author MyEclipse Persistence Tools
  * 类似于这种pojo我们后期可以使用逆向代码生成工具来进行生成
  * 逆向代码生成工具
+ * 类别bean
  */
 public class Category {
 	private Integer cid;
