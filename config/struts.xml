@@ -43,5 +43,12 @@
 		<action name="forderAction_*" method="{1}" class="forderAction">
 			<result name="showCar" type="redirect">/showCar.jsp</result>
 		</action>
+		<action name="usersAction_*" method="{1}" class="usersAction">
+			<result name="aa">${goUrl}</result>
+		</action>
+		<action name="payAction_*" method="{1}" class="payAction">
+			<result name="reqpay">/users/reqpay.jsp</result>
+			<result name="payResult">/users/payResult.jsp</result>
+		</action>
 	</package>
 </struts>

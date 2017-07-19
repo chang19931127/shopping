@@ -1,6 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -14,24 +15,25 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 </head>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.7.min.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			$(".delBtn").click(function(){
-				 //获取商品编号,给后台删除指定购物项
-				 var gid=$(this).attr("id");
-				 $.post("/shop/sorderAction_removeSorder.action",
-				 	{"goods.gid":gid},
-				 	function(result){
-				 		 // 更新总价格
-				 		$("#ftotal").text(result.ftotal);
-				 	});
-				 // 删除选中行
-				 $(this).parents("tr:first").remove();
-				
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery-1.7.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$(".delBtn").click(function() {
+			//获取商品编号,给后台删除指定购物项
+			var gid = $(this).attr("id");
+			$.post("/shop/sorderAction_removeSorder.action", {
+				"goods.gid" : gid
+			}, function(result) {
+				// 更新总价格
+				$("#ftotal").text(result.ftotal);
 			});
+			// 删除选中行
+			$(this).parents("tr:first").remove();
+
 		});
-	</script>
+	});
+</script>
 <body>
 	购物车如下:
 	<table>
@@ -52,9 +54,9 @@
 		</c:forEach>
 	</table>
 	<div id="ftotal">
-		<!-- 显示购物的总价格 -->
-		${sessionScope.forder.ftotal}
+		<!-- 显示购物的总价格 ，并且保留2位小数-->
+		<fmt:formatNumber pattern="#.##" value="${sessionScope.forder.ftotal}" />
 	</div>
-	<a href="">提交</a>
+	<a href="${pageContext.request.contextPath}/users/confirm.jsp?aaa=xxx&bbb=yyy">提交</a>
 </body>
 </html>

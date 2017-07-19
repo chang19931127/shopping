@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.czd.shopping.service.CategoryService;
+import com.czd.shopping.util.FileUploadUtil;
 import com.czd.shopping.util.ShopTimerTask;
 
 /**
@@ -21,7 +22,7 @@ public class ShopServletContextListener implements ServletContextListener {
 	private ApplicationContext context = null;
 	private CategoryService categoryService = null;
 	private ShopTimerTask shopTimerTask = null;
-	
+	private FileUploadUtil fileUploadUtil = null;
 	/**
 	 * Default constructor.
 	 */
@@ -51,8 +52,12 @@ public class ShopServletContextListener implements ServletContextListener {
 		// 通过spring配置文件获取线程任务
 		shopTimerTask = (ShopTimerTask) context.getBean("shopTimerTask");
 		shopTimerTask.setApplication(se.getServletContext());
+		fileUploadUtil = (FileUploadUtil)context.getBean("fileUploadUtil");
 		// 设置执行时间
 		new Timer(true).scheduleAtFixedRate(shopTimerTask, 0, 1000 * 60 * 1000);
+		//通过路径来获取银行图标，并存储到application内置对象中
+		String path = se.getServletContext().getRealPath("/image/logo");
+		se.getServletContext().setAttribute("bankImages",fileUploadUtil.bankImage(path));
 	}
 
 }

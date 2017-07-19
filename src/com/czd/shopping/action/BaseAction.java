@@ -15,7 +15,10 @@ import com.czd.shopping.service.CategoryService;
 import com.czd.shopping.service.ForderService;
 import com.czd.shopping.service.GoodsService;
 import com.czd.shopping.service.SorderService;
+import com.czd.shopping.service.UsersService;
+import com.czd.shopping.service.impl.OnlinePayService;
 import com.czd.shopping.util.FileUploadUtil;
+import com.czd.shopping.util.ShopEmailUtil;
 import com.opensymphony.xwork2.ModelDriven;
 
 /**
@@ -44,9 +47,12 @@ public class BaseAction<T> extends ActionSupport
 	protected GoodsService goodsService = null;
 	protected ForderService forderService = null;
 	protected SorderService sorderService = null;
+	protected UsersService usersService = null;
+	protected OnlinePayService onlinePayService = null;
+	protected ShopEmailUtil shopEmailUtil = null;
 	protected FileUploadUtil fileUploadUtil = null;
 
-	//动态获取子类类型
+	// 动态获取子类类型
 	public BaseAction() {
 		ParameterizedType type = (ParameterizedType) this.getClass()
 				.getGenericSuperclass();
@@ -58,13 +64,25 @@ public class BaseAction<T> extends ActionSupport
 			throw new RuntimeException(e);
 		}
 	}
-	
+
 	// 用于注入
-		
+	
+	
 	public void setGoodsService(GoodsService goodsService) {
 		this.goodsService = goodsService;
 	}
-	
+
+	public void setOnlinePayService(OnlinePayService onlinePayService) {
+		this.onlinePayService = onlinePayService;
+	}
+
+	public void setShopEmailUtil(ShopEmailUtil shopEmailUtil) {
+		this.shopEmailUtil = shopEmailUtil;
+	}
+
+	public void setUsersService(UsersService usersService) {
+		this.usersService = usersService;
+	}
 
 	public void setForderService(ForderService forderService) {
 		this.forderService = forderService;
@@ -89,7 +107,6 @@ public class BaseAction<T> extends ActionSupport
 	public void setCategoryService(CategoryService categoryService) {
 		this.categoryService = categoryService;
 	}
-
 
 	@Override
 	public void setApplication(Map<String, Object> application) {

@@ -20,7 +20,10 @@ http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 		<property name="goodsService" ref="goodsService" />
 		<property name="forderService" ref="forderService" />
 		<property name="sorderService" ref="sorderService" />
+		<property name="usersService" ref="usersService" />		
+		<property name="onlinePayService" ref="onlinePayService" />		
 		<property name="fileUploadUtil" ref="fileUploadUtil" />
+		<property name="shopEmailUtil" ref="shopEmailUtil" />
 	</bean>
 	<bean id="accountAction" class="com.czd.shopping.action.AccountAction"
 		parent="baseAction" scope="prototype" />
@@ -31,6 +34,8 @@ http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 	<bean id="forderAction" class="com.czd.shopping.action.ForderAction"
 		parent="baseAction" scope="prototype" />
 	<bean id="sorderAction" class="com.czd.shopping.action.SorderAction"
+		parent="baseAction" scope="prototype" />
+	<bean id="usersAction" class="com.czd.shopping.action.UsersAction"
 		parent="baseAction" scope="prototype" />
 
 </beans>

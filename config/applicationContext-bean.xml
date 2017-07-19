@@ -46,6 +46,10 @@ http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 		parent="baseService" />
 	<bean id="sorderService" class="com.czd.shopping.service.impl.SorderServiceImpl"
 		parent="baseService" />
+	<bean id="usersService" class="com.czd.shopping.service.impl.UsersServiceImpl"
+		parent="baseService" />
+	<bean id="onlinePayService" class="com.czd.shopping.service.impl.OnlinePayService" />
+	<bean id="shopEmailUtil" class="com.czd.shopping.util.ShopEmailUtil" />
 	<bean id="fileUploadUtil" class="com.czd.shopping.util.FileUploadUtil">
 		<property name="filePath"
 			value="E:\javaprogram\java-web\shopping\WebContent\image\" />
